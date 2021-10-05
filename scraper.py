@@ -9,7 +9,7 @@ DATA_TABLE = "data"
 engine = create_engine(f'sqlite:///{DATABASE}', echo=False)
 
 da_set = []
-today = datetime.datetime.strftime(datetime.datetime.now(),"%d-%m-%Y")
+today = datetime.datetime.strftime(datetime.datetime.now(),"%m-%d-%Y")
 
 raw = requests.get("https://www.canning.wa.gov.au/residents/building-here/development-assessment-panel", verify=False)
 soup = BeautifulSoup(raw.content, 'html.parser')
