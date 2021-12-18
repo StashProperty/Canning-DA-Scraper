@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup
 import requests
 from sqlalchemy import create_engine
 import pandas as pd
+import urllib
 
 DATABASE = "data.sqlite"
 DATA_TABLE = "data"
@@ -25,9 +26,9 @@ for row in da_rows:
                 else:
                         council_reference = council_reference.text.split("ref: ")[-1]
                 if info_url.find("a"):
-                        info_url = info_url.find_all('a')[-1].attrs['href']
+                        info_url = urllib.parse.quote(info_url.find_all('a')[-1].attrs['href'])
                 else:
-                        info_url = None
+                        info_url = 'https://www.canning.wa.gov.au/residents/building-here/development-assessment-panel'
                 da = {}
                 da['council_reference'] = council_reference
                 da['description'] = description
